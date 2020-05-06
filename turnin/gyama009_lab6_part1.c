@@ -22,17 +22,18 @@ void Tick(){
 	switch(state){ // Transitions
 		case Start: // Initial transition
 			cnt = 0x00;
+			PORTB = 0x01;
 			state = Blink;
 			break;
 		case Blink:
 			if(cnt == 0x01){
-				PORTB = 0x01;
-			}
-			else if(cnt == 0x02){
 				PORTB = 0x02;
 			}
-			else{
+			else if(cnt == 0x02){
 				PORTB = 0x04;
+			}
+			else{
+				PORTB = 0x01;
 				cnt = 0x00;
 			}
 			state = Blink;
