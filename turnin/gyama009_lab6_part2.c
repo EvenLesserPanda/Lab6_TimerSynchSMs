@@ -24,18 +24,19 @@ void Tick(){
 		case Start: // Initial transition
 			down = 0x00;
 			cnt = 0x00;
+			PORTB = 0x01;
 			state = Blink;
 			break;
 		case Blink:
 			if((~PINA & 0xFF) == 0x00){
 				if(cnt == 0x01){
-					PORTB = 0x01;
-				}
-				else if(cnt == 0x02){
 					PORTB = 0x02;
 				}
-				else{
+				else if(cnt == 0x02){
 					PORTB = 0x04;
+				}
+				else{
+					PORTB = 0x01;
 				}
 				state = Blink;
 			}
@@ -78,13 +79,13 @@ void Tick(){
 		case Blink:
 			if(down){
 				cnt--;
-				if(cnt == 0x01){
+				if(cnt == 0x00){
 					down = 0x00;
 				}
 			}
 			else{
 				cnt++;
-				if(cnt == 0x03){
+				if(cnt == 0x02){
 					down = 0x01;
 				}
 			}
