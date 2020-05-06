@@ -14,7 +14,7 @@
 #endif
 #include "timer.h"
 
-enum States {Start, Blink, Button1, Release1, Button2, Release2} state;
+enum States {Start, Blink, Button1, Release1, Button2} state;
 
 unsigned char cnt;
 unsigned char down;
@@ -65,11 +65,8 @@ void Tick(){
 				state = Button2;
 			}
 			else{
-				state = Release2;
+				state = Start;
 			}
-			break;
-		case Release2:
-			state = Start;
 			break;
 		default:
 			state = Start;
@@ -95,8 +92,6 @@ void Tick(){
 		case Release1:
 			break;
 		case Button2:
-			break;
-		case Release2:
 			break;
 		default:
 			break;
