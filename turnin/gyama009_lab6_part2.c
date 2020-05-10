@@ -65,7 +65,10 @@ void Tick(){
 				state = Button2;
 			}
 			else{
-				state = Start;
+				PORTB = 0x01;
+				down = 0x01;
+				cnt = 0x01;
+				state = Blink;
 			}
 			break;
 		default:
