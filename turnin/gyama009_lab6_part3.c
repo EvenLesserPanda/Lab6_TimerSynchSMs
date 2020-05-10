@@ -18,21 +18,21 @@ enum States{Start, Init, Increment, Decrement, Reset} state;
 void Tick(){
 	switch(state){
 		case Start: // Initial transition
-			PORTC = 0x07;
+			PORTB = 0x07;
 			state = Init;
 			break;
 		case Init:
 			if((PINA & 0x03) == 0x03){
 				state = Reset;
-				PORTC = 0x00;
+				PORTB = 0x00;
 			}
-			else if(((PINA & 0x02) == 0x02) && (PORTC > 0)){
+			else if(((PINA & 0x02) == 0x02) && (PORTB > 0)){
 				state = Decrement;
-				PORTC -= 1;
+				PORTB -= 1;
 			}
-			else if(((PINA & 0x01) == 0x01) && (PORTC < 9)){
+			else if(((PINA & 0x01) == 0x01) && (PORTB < 9)){
 				state = Increment;
-				PORTC += 1;
+				PORTB += 1;
 			}
 			else{
 				state = Init;
@@ -44,7 +44,7 @@ void Tick(){
 			}
 			else if((PINA & 0x03) == 0x03){
 				state = Reset;
-				PORTC = 0x00;
+				PORTB = 0x00;
 			}
 			else{
 				state = Increment;
@@ -56,24 +56,24 @@ void Tick(){
 			}
 			else if((PINA & 0x03) == 0x03){
 				state = Reset;
-				PORTC = 0x00;
+				PORTB = 0x00;
 			}
 			else{
 				state = Decrement;
 			}
 			break;
 		case Reset:
-			if(((PINA & 0x03) == 0x03) || (PORTC == 0x09) || (PORTC == 0x00)){
+			if(((PINA & 0x03) == 0x03) || (PORTB == 0x09) || (PORTB == 0x00)){
 				state = Reset;
-				PORTC = 0x00;
+				PORTB = 0x00;
 			}
-			else if(((PINA & 0x01) == 0x01) && (PORTC < 9)){
+			else if(((PINA & 0x01) == 0x01) && (PORTB < 9)){
 				state = Increment;
-				PORTC += 1;
+				PORTB += 1;
 			}
-			else if(((PINA & 0x02) == 0x02) && (PORTC > 0)){
+			else if(((PINA & 0x02) == 0x02) && (PORTB > 0)){
 				state = Decrement;
-				PORTC -= 1;
+				PORTB -= 1;
 			}
 			else{
 				state = Init;
@@ -99,7 +99,7 @@ void Tick(){
 
 int main(void) {
 	DDRA = 0x00; PORTA = 0xFF; // Configure port A's 8 pins as inputs
-	DDRC = 0xFF; PORTC = 0x00; // Configure port C's 8 pins as outputs
+	DDRB = 0xFF; PORTB = 0x00; // Configure port B's 8 pins as outputs
 	state = Start;
 	TimerSet(100);
 	TimerOn();
