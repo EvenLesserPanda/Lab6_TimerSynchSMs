@@ -8,6 +8,7 @@
  *	code, is my own original work.
  */
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #ifdef _SIMULATE_
 #include "simAVRHeader.h"
 #endif
@@ -39,7 +40,7 @@ void Tick(){
 			}
 			break;
 		case Increment:
-			if((~PINA | 0x00) == 0x00){
+			if((~PINA & 0xFF) == 0x00){
 				state = Init;
 			}
 			else if((~PINA & 0x03) == 0x03){
@@ -51,7 +52,7 @@ void Tick(){
 			}
 			break;
 		case Decrement:
-			if((~PINA | 0x00) == 0x00){
+			if((~PINA & 0xFF) == 0x00){
 				state = Init;
 			}
 			else if((~PINA & 0x03) == 0x03){
