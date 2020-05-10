@@ -101,8 +101,12 @@ int main(void) {
 	DDRA = 0x00; PORTA = 0xFF; // Configure port A's 8 pins as inputs
 	DDRC = 0xFF; PORTC = 0x00; // Configure port C's 8 pins as outputs
 	state = Start;
+	TimerSet(100);
+	TimerOn();
 	while (1) {
 		Tick();	
+		while(!TimerFlag){}
+		TimerFlag = 0;
 	}
 	return 0;
 }
