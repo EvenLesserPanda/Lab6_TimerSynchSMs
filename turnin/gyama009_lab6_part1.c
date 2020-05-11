@@ -14,6 +14,8 @@
 #endif
 #include "timer.h"
 
+// Video Link: https://youtu.be/QIgLzzR-mI4
+
 enum States {Start, Blink} state;
 
 unsigned char cnt;

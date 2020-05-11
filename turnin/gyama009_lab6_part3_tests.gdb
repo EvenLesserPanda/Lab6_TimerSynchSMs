@@ -38,6 +38,16 @@ expectPORTC 0
 # Check pass/fail
 checkResult
 
+
+#I have no idea how to test with SMs
+
+
+
+
+
+
+
+
 # Add tests below
 
 # Report on how many tests passed/tests ran

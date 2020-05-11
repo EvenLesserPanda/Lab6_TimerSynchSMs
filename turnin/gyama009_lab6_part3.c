@@ -14,6 +14,8 @@
 #endif
 #include "timer.h"
 
+// Video Link: https://youtu.be/B88q46agnbg
+
 enum States{Start, Init, Increment, Decrement, Reset} state;
 
 void Tick(){

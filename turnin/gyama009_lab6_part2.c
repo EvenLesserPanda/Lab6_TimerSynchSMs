@@ -14,6 +14,8 @@
 #endif
 #include "timer.h"
 
+// Video Link: https://youtu.be/Qzxbi-sAr1g
+
 enum States {Start, Blink, Button1, Release1, Button2} state;
 
 unsigned char cnt;
