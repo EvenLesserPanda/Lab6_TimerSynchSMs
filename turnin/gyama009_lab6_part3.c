@@ -29,11 +29,11 @@ void Tick(){
 			}
 			else if(((~PINA & 0x02) == 0x02) && (PORTB > 0)){
 				state = Decrement;
-				PORTB -= 1;
+			//	PORTB -= 1;
 			}
 			else if(((~PINA & 0x01) == 0x01) && (PORTB < 9)){
 				state = Increment;
-				PORTB += 1;
+			//	PORTB += 1;
 			}
 			else{
 				state = Init;
@@ -64,17 +64,17 @@ void Tick(){
 			}
 			break;
 		case Reset:
-			if(((~PINA & 0x03) == 0x03) || (PORTB == 0x09) || (PORTB == 0x00)){
+			if(((~PINA & 0x03) == 0x03)){
 				state = Reset;
-				PORTB = 0x00;
+				//PORTB = 0x00;
 			}
-			else if(((~PINA & 0x01) == 0x01) && (PORTB < 9)){
+			else if(((~PINA & 0x01) == 0x01)){
 				state = Increment;
-				PORTB += 1;
+				//PORTB += 1;
 			}
-			else if(((~PINA & 0x02) == 0x02) && (PORTB > 0)){
+			else if(((~PINA & 0x02) == 0x02)){
 				state = Decrement;
-				PORTB -= 1;
+				//PORTB -= 1;
 			}
 			else{
 				state = Init;
@@ -88,10 +88,17 @@ void Tick(){
 		case Init:
 			break;
 		case Increment:
+			if(PORTB < 9){
+				PORTB++;
+			}
 			break;
 		case Decrement:
+			if(PORTB > 0){
+				PORTB--;
+			}
 			break;
 		case Reset:
+			PORTB = 0x00;
 			break;
 		default:
 			break;
